@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel Yaraure | Portafolio</title>
+  <meta name="description" content="Portafolio de Gabriel Yaraure, estudiante de TCU en Análisis de Sistemas. Proyectos de inventario, gestión de información, Odoo y Power BI." />
+  <meta name="theme-color" content="#0d1117" />
+
+  <!-- Fuente de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Nuestros estilos -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============ ENCABEZADO / NAVEGACIÓN ============ -->
+  <header class="header">
+    <nav class="nav container">
+      <a href="#inicio" class="logo">GabrielYaraure<span>.</span></a>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#inicio" class="nav__link">Inicio</a></li>
+        <li><a href="#sobre-mi" class="nav__link">Sobre mí</a></li>
+        <li><a href="#proyectos" class="nav__link">Proyectos</a></li>
+        <li><a href="#estudios" class="nav__link">Estudios</a></li>
+        <li><a href="#certificados" class="nav__link">Certificados</a></li>
+        <li><a href="#contacto" class="nav__link">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ INICIO ============ -->
+    <section class="hero container" id="inicio">
+     <div class="hero__content">
+      <p class="hero__eyebrow">Hola, soy</p>
+      <h1 class="hero__title">Gabriel <span class="gradient-text">Yaraure</span></h1>
+      <p class="hero__subtitle">
+        Estudiante de TCU en Análisis de Sistemas. Construyo soluciones
+        que organizan información y hacen más fácil el trabajo de las personas.
+      </p>
+      <div class="hero__actions">
+        <a href="#proyectos" class="btn btn--primary">Ver proyectos</a>
+        <a href="#contacto" class="btn btn--ghost">Contáctame</a>
+      </div>
+     </div>
+
+     <!-- Ventana de código decorativa (solo adorno, no es contenido real) -->
+     <div class="code-window" aria-hidden="true">
+       <div class="code-window__bar">
+         <span></span><span></span><span></span>
+         <em>gabriel.js</em>
+       </div>
+       <pre><code><span class="line" style="--i:0"><span class="c">// Mi perfil</span></span>
+<span class="line" style="--i:1"><span class="k">const</span> gabriel = {</span>
+<span class="line" style="--i:2">  nombre: <span class="s">"Gabriel Yaraure"</span>,</span>
+<span class="line" style="--i:3">  rol: <span class="s">"Análisis de Sistemas"</span>,</span>
+<span class="line" style="--i:4">  herramientas: [<span class="s">"Odoo"</span>, <span class="s">"Power BI"</span>,</span>
+<span class="line" style="--i:5">                 <span class="s">"Google Sheets"</span>],</span>
+<span class="line" style="--i:6">  ingles: <span class="s">"B2"</span>,</span>
+<span class="line" style="--i:7">  aprendiendo: <span class="k">true</span>,</span>
+<span class="line" style="--i:8">};</span>
+<span class="line" style="--i:9"> </span>
+<span class="line" style="--i:10"><span class="k">function</span> <span class="s">resolver</span>(problema) {</span>
+<span class="line" style="--i:11">  <span class="k">return</span> sistema.<span class="s">organizar</span>(problema);<span class="cursor"></span></span>
+<span class="line" style="--i:12">}</span></code></pre>
+     </div>
+    </section>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="section container reveal" id="sobre-mi">
+      <h2 class="section__title">Sobre <span class="gradient-text">mí</span></h2>
+      <div class="about">
+        <p>
+          Soy bachiller y actualmente cursando el TCU en Análisis de Sistemas.
+          Me interesa convertir problemas reales en sistemas sencillos y útiles:
+          desde controlar el inventario de un negocio hasta centralizar la
+          información de toda una institución.
+        </p>
+        <p>
+          Me gusta aprender haciendo: parto de una necesidad concreta, diseño
+          la solución con las herramientas que tengo a la mano y la mejoro
+          con la retroalimentación de quienes la usan.
+        </p>
+        <ul class="skills">
+          <li>Análisis de sistemas</li>
+          <li>Google Sheets</li>
+          <li>Odoo</li>
+          <li>Power BI</li>
+          <li>Gestión de inventarios</li>
+          <li>Organización de datos</li>
+          <li>HTML y CSS</li>
+          <li>Inglés B2</li>
+          <li>Resolución de problemas</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="section container" id="proyectos">
+      <h2 class="section__title reveal">Mis <span class="gradient-text">proyectos</span></h2>
+
+      <div class="projects">
+
+        <article class="card reveal">
+          <div class="card__icon" aria-hidden="true">📦</div>
+          <h3 class="card__title">Sistema de inventario para bodegón con delivery</h3>
+          <p class="card__text">
+            Sistema hecho en Google Sheets para llevar el control del inventario
+            de un bodegón que también ofrece servicio de delivery. Permite saber
+            qué productos hay disponibles, registrar entradas y salidas, y
+            mantener el stock al día.
+          </p>
+          <ul class="tags">
+            <li>Google Sheets</li>
+            <li>Inventario</li>
+            <li>Delivery</li>
+          </ul>
+          <!-- Cuando tengas enlace o capturas, cambia el # por la URL -->
+          <a href="#" class="card__link">Ver detalles →</a>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__icon" aria-hidden="true">🗂️</div>
+          <h3 class="card__title">Centralización de datos del personal – Liceo Páez</h3>
+          <p class="card__text">
+            Sistema para reunir en un solo lugar la información personal de
+            todos los trabajadores del Liceo Páez (Acarihuaraure), evitando
+            datos dispersos y facilitando su consulta y actualización.
+          </p>
+          <ul class="tags">
+            <li>Gestión de información</li>
+            <li>Base de datos</li>
+            <li>Institución educativa</li>
+          </ul>
+          <a href="#" class="card__link">Ver detalles →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ ESTUDIOS ============ -->
+    <section class="section container" id="estudios">
+      <h2 class="section__title reveal">Mis <span class="gradient-text">estudios</span></h2>
+
+      <div class="timeline">
+        <div class="timeline__item reveal">
+          <span class="timeline__date">En curso</span>
+          <h3>TCU en Análisis de Sistemas</h3>
+          <p>Formación enfocada en el análisis, diseño y desarrollo de sistemas de información.</p>
+        </div>
+        <div class="timeline__item reveal">
+          <span class="timeline__date">Completado</span>
+          <h3>Bachiller</h3>
+          <p>Educación media general.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICADOS ============ -->
+    <section class="section container" id="certificados">
+      <h2 class="section__title reveal">Mis <span class="gradient-text">certificados</span></h2>
+
+      <div class="certs">
+
+        <article class="cert reveal">
+          <div class="cert__icon" aria-hidden="true">🟣</div>
+          <h3 class="cert__title">Odoo</h3>
+          <p class="cert__text">Curso de Odoo, sistema ERP para gestionar inventario, ventas, compras y más.</p>
+          <span class="cert__badge">Certificado</span>
+        </article>
+
+        <article class="cert reveal">
+          <div class="cert__icon" aria-hidden="true">🧩</div>
+          <h3 class="cert__title">Desarrollo y personalización de módulos en Odoo</h3>
+          <p class="cert__text">Adaptación de módulos de Odoo a las necesidades específicas de cada empresa.</p>
+          <span class="cert__badge">Certificado</span>
+        </article>
+
+        <article class="cert reveal">
+          <div class="cert__icon" aria-hidden="true">📊</div>
+          <h3 class="cert__title">Power BI</h3>
+          <p class="cert__text">Análisis de datos y creación de reportes y paneles interactivos.</p>
+          <span class="cert__badge">Certificado</span>
+        </article>
+
+        <article class="cert reveal">
+          <div class="cert__icon" aria-hidden="true">🌎</div>
+          <h3 class="cert__title">Inglés nivel B2</h3>
+          <p class="cert__text">Cleveland English Institute certifica mi nivel de inglés intermedio-alto (B2).</p>
+          <span class="cert__badge">Certificado</span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section container reveal" id="contacto">
+      <h2 class="section__title">Hablemos</h2>
+      <p class="contact__text">
+        ¿Tienes un proyecto en mente o quieres saber más de mi trabajo?
+        Escríbeme.
+      </p>
+
+      <div class="contact__links">
+        <a href="mailto:gabrielyaraure1@gmail.com" class="btn btn--primary">gabrielyaraure1@gmail.com</a>
+        <a href="https://wa.me/584125242383" class="btn btn--ghost" target="_blank" rel="noopener">WhatsApp: 0412-524-2383</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ PIE DE PÁGINA ============ -->
+  <footer class="footer">
+    <p>© <span id="year"></span> Gabriel Yaraure. Hecho con HTML, CSS y JavaScript.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

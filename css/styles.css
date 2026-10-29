@@ -1,0 +1,487 @@
+/* =========================================================
+   ESTILOS DEL PORTAFOLIO
+   Tema oscuro con pocos colores de acento (violeta y turquesa)
+   ========================================================= */
+
+/* ---------- 1. Variables (los colores y medidas en un solo lugar) ---------- */
+:root {
+  --bg: #0d1117;            /* fondo principal */
+  --bg-card: #161b22;       /* fondo de tarjetas */
+  --border: #262c36;        /* líneas sutiles */
+  --text: #e6edf3;          /* texto principal */
+  --text-muted: #9aa5b1;    /* texto secundario */
+
+  --accent: #8b5cf6;        /* violeta: botones */
+  --accent-2: #22d3ee;      /* turquesa: detalles */
+
+  --radius: 14px;
+  --header-h: 68px;
+}
+
+/* ---------- 2. Reinicio básico ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h); /* para que el menú no tape los títulos */
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+/* ---------- 2.1 Fondo decorativo: circuito + brillos ---------- */
+/* Líneas de circuito (patrón SVG que se repite) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200' fill='none' stroke-width='1.2'%3E%3Cg stroke='rgb(139,92,246)'%3E%3Cpath d='M0 50h50l20 20h40'/%3E%3Cpath d='M100 0v30l20 20h80'/%3E%3Cpath d='M100 200v-30l-20-20v-20'/%3E%3Cpath d='M200 140h-40l-20 20v40'/%3E%3Cpath d='M140 0v20l15 15h20'/%3E%3Cpath d='M0 140h30l20-20h20'/%3E%3C/g%3E%3Cg stroke='rgb(34,211,238)' fill='rgb(13,17,23)'%3E%3Ccircle cx='110' cy='70' r='3.5'/%3E%3Ccircle cx='100' cy='30' r='3.5'/%3E%3Ccircle cx='80' cy='130' r='3.5'/%3E%3Ccircle cx='175' cy='35' r='3.5'/%3E%3Ccircle cx='70' cy='120' r='3.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  /* se desvanece hacia abajo para no recargar */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.35) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.35) 100%);
+}
+
+/* Brillos de color suaves en las esquinas */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(600px circle at 90% 5%, rgba(139, 92, 246, 0.16), transparent 70%),
+    radial-gradient(500px circle at 5% 95%, rgba(34, 211, 238, 0.10), transparent 70%);
+}
+
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+
+/* Contenedor que centra el contenido y limita su ancho */
+.container {
+  width: min(1100px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+/* Texto con degradado de color */
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- 3. Encabezado y navegación ---------- */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.logo span { color: var(--accent-2); }
+
+.nav__menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__link {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.nav__link:hover,
+.nav__link.active { color: var(--text); }
+
+/* Botón hamburguesa (solo se ve en celular) */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav__toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.3s, opacity 0.3s;
+}
+/* Animación de la hamburguesa a una "X" */
+.nav__toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__toggle.open span:nth-child(2) { opacity: 0; }
+.nav__toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 4. Botones ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn--primary:hover { box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35); }
+
+.btn--ghost {
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn--ghost:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+
+/* ---------- 5. Sección de inicio (hero) ---------- */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  /* 2 columnas en pantalla grande; en celular se apilan solas */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  align-items: center;
+  align-content: center;
+  gap: 3rem;
+  padding-top: calc(var(--header-h) + 2rem);
+  padding-bottom: 3rem;
+}
+
+/* ---- Ventana de código decorativa ---- */
+.code-window {
+  background: rgba(22, 27, 34, 0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.15);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+}
+
+.code-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.code-window__bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.code-window__bar span:nth-child(1) { background: var(--accent); }
+.code-window__bar span:nth-child(2) { background: var(--accent-2); }
+.code-window__bar em {
+  margin-left: 0.6rem;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.code-window pre {
+  padding: 1.25rem 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  overflow-x: auto;
+  color: var(--text);
+}
+.code-window .k { color: var(--accent); }     /* palabras clave */
+.code-window .s { color: var(--accent-2); }   /* textos */
+.code-window .c { color: #6e7781; }           /* comentarios */
+
+/* Cada línea aparece una tras otra */
+.code-window pre { white-space: normal; }
+.code-window .line {
+  display: block;
+  white-space: pre;
+  opacity: 0;
+  animation: aparecer 0.5s ease forwards;
+  animation-delay: calc(var(--i) * 0.22s + 0.4s);
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Cursor parpadeante */
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background: var(--accent-2);
+  animation: parpadeo 1s steps(1) infinite;
+}
+@keyframes parpadeo { 50% { opacity: 0; } }
+
+.hero__eyebrow {
+  color: var(--accent-2);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.hero__subtitle {
+  max-width: 580px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ---------- 6. Secciones en general ---------- */
+.section { padding: 5rem 0; }
+
+.section__title {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- 7. Sobre mí ---------- */
+.about {
+  max-width: 720px;
+  display: grid;
+  gap: 1.25rem;
+  color: var(--text-muted);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+.skills li {
+  padding: 0.4rem 0.9rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
+/* ---------- 8. Proyectos (tarjetas) ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.card__icon { font-size: 2rem; margin-bottom: 1rem; }
+.card__title { font-size: 1.2rem; margin-bottom: 0.75rem; }
+.card__text { color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+}
+.tags li {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--accent-2);
+}
+
+.card__link {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.card__link:hover { text-decoration: underline; }
+
+/* ---------- 9. Estudios (línea de tiempo) ---------- */
+.timeline {
+  border-left: 2px solid var(--border);
+  padding-left: 2rem;
+  display: grid;
+  gap: 2rem;
+  max-width: 720px;
+}
+
+.timeline__item { position: relative; }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: calc(-2rem - 7px);
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--bg);
+}
+
+.timeline__date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.timeline__item h3 { margin: 0.25rem 0; }
+.timeline__item p { color: var(--text-muted); }
+
+/* ---------- 9.1 Certificados ---------- */
+.certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.cert {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.cert:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-2);
+}
+
+.cert__icon { font-size: 1.75rem; margin-bottom: 0.9rem; }
+.cert__title { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.cert__text { color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; }
+
+.cert__badge {
+  align-self: flex-start;
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--accent);
+}
+
+/* ---------- 10. Contacto ---------- */
+#contacto { text-align: center; }
+.contact__text {
+  max-width: 480px;
+  margin: -1rem auto 2rem;
+  color: var(--text-muted);
+}
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ---------- 11. Pie de página ---------- */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- 12. Animación al hacer scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 13. Responsive (pantallas pequeñas) ---------- */
+@media (max-width: 768px) {
+  .nav__toggle { display: flex; }
+
+  .nav__menu {
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    /* Oculto por defecto; se muestra con la clase "open" */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .nav__menu.open { max-height: 320px; }
+  .nav__menu li { padding: 0.9rem 1.5rem; }
+}
+
+/* Respeta a quienes prefieren menos animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .code-window .line { animation: none; opacity: 1; }
+  .cursor { animation: none; }
+}
